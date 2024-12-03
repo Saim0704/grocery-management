@@ -1,41 +1,37 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Box, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import './AdminLayout.css'; // Import CSS
 import { Link } from 'react-router-dom';
 
 const AdminLayout = () => {
   return (
-    <Box display="flex">
+    <div className="admin-layout">
       {/* Sidebar */}
-      <Drawer variant="permanent" anchor="left">
-        <List>
-          <ListItem button component={Link} to="/dashboard">
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem button component={Link} to="/inventory">
-            <ListItemText primary="Inventory" />
-          </ListItem>
-          <ListItem button component={Link} to="/sales">
-            <ListItemText primary="Sales" />
-          </ListItem>
-          <ListItem button component={Link} to="/users">
-            <ListItemText primary="Users" />
-          </ListItem>
-        </List>
-      </Drawer>
+      <div className="admin-sidebar">
+        <Link className="menu-item" to="/dashboard">
+          Dashboard
+        </Link>
+        <Link className="menu-item" to="/inventory">
+          Inventory
+        </Link>
+        <Link className="menu-item" to="/sales">
+          Sales
+        </Link>
+        <Link className="menu-item" to="/users">
+          Users
+        </Link>
+      </div>
+
+      {/* Header */}
+      <div className="admin-header">
+        <h1>Grocery Management</h1>
+      </div>
 
       {/* Main Content */}
-      <Box flex={1}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6">Grocery Management</Typography>
-          </Toolbar>
-        </AppBar>
-        <Box p={3}>
-          <Outlet />
-        </Box>
-      </Box>
-    </Box>
+      <div className="admin-content">
+        <Outlet />
+      </div>
+    </div>
   );
 };
 
